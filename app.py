@@ -7,7 +7,7 @@ st.set_page_config(page_title="E-Commerce AI Agent", page_icon="🛒", layout="w
 
 # Load API keys from Streamlit secrets (cloud) into environment variables
 try:
-    for key in ("OPENAI_API_KEY", "GROQ_API_KEY", "GEMINI_API_KEY"):
+    for key in ("OPENAI_API_KEY", "GROQ_API_KEY", "GEMINI_API_KEY", "SERPER_API_KEY"):
         if key in st.secrets:
             os.environ[key] = st.secrets[key]
 except Exception:
@@ -37,12 +37,12 @@ st.markdown("""
 # ---------- Backend connection ----------
 def run_agents(name, desc, reviews, tone):
     try:
-        from crew import run_crew  # Momna's CrewAI function
+        from crew_logic import run_crew  # Momna's CrewAI function
         result = run_crew(name, desc, reviews, tone)
         result["_demo"] = False
         return result
     except ImportError:
-        # crew.py not available yet: return mock data
+        # crew_logic.py not available yet: return mock data
         time.sleep(2)
         return {
             "_demo": True,
