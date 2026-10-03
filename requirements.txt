@@ -1,1 +1,6 @@
-   streamlit
+streamlit
+crewai
+crewai-tools
+requests
+python-dotenv
+google-genai
